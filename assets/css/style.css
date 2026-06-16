@@ -116,6 +116,58 @@ code {
   border-radius: 6px;
 }
 
+pre {
+  overflow-x: auto;
+  background: #1f2933;
+  color: #f7f3ec;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.markdown-note > :first-child { margin-top: 0; }
+.markdown-note h1 {
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  margin-bottom: 18px;
+}
+.markdown-note h2 { margin-top: 36px; }
+.markdown-note img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+.markdown-note table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 22px 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+.markdown-note th,
+.markdown-note td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.markdown-note th {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.markdown-note blockquote {
+  margin: 24px 0;
+  padding: 4px 0 4px 18px;
+  border-left: 4px solid var(--accent);
+  color: var(--muted);
+}
+.note-error { color: #9f1239; }
+
 section { margin: 32px 0; }
 ul { padding-left: 1.25rem; }
 
