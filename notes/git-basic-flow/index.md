@@ -11,8 +11,8 @@
 ```powershell
 D:
 cd D:\code
-git clone https://github.com/s-spice/s-spice.github.io.git
-cd s-spice.github.io
+git clone https://github.com/user/project.git
+cd project
 code .
 ```
 
@@ -22,14 +22,14 @@ code .
 D:                 切换到 D 盘
 cd D:\code         进入代码文件夹
 git clone ...      从 GitHub 下载仓库
-cd s-spice.github.io 进入项目文件夹
+cd project 进入项目文件夹
 code .             用 VS Code 打开当前项目
 ```
 
 克隆完成后，本地目录大概是：
 
 ```text
-D:\code\s-spice.github.io
+D:\code\project
 ```
 
 ## 2. 每次修改前先拉取最新版本
@@ -37,7 +37,7 @@ D:\code\s-spice.github.io
 如果本地仓库已经存在，以后每次开始修改前，建议先执行：
 
 ```powershell
-cd D:\code\s-spice.github.io
+cd D:\code\project
 git pull
 ```
 
@@ -117,18 +117,12 @@ git push
 
 如果 push 成功，GitHub 仓库就会更新。对于 GitHub Pages 网站，稍等一会儿后，网站页面也会自动更新。
 
-我的网站地址是：
-
-```text
-https://s-spice.github.io/
-```
-
 ## 8. 日常完整流程
 
 以后每次修改网站，完整流程就是：
 
 ```powershell
-cd D:\code\s-spice.github.io
+cd D:\code\project
 git pull
 
 # 用 VS Code 修改 index.html / projects.html / cv.html / notes.html 等文件

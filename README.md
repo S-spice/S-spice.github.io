@@ -13,15 +13,31 @@ A minimal static research portfolio for GitHub Pages.
 
 ## Writing notes in Markdown
 
-Notes can be written as Markdown files under `notes/`. The shared reader page `notes/view.html` loads a Markdown file from the `note` query parameter. For example, `notes/view.html?note=git-basic-flow` renders `notes/git-basic-flow.md`.
+Notes can be written as Markdown files under `notes/`. The shared reader page `notes/view.html` loads a note folder from the `note` query parameter. For example, `notes/view.html?note=git-basic-flow` renders `notes/git-basic-flow/index.md`.
 
 To add another Markdown note:
 
-1. Create a Markdown file under `notes/`, for example `notes/git-basic-flow.md`.
-2. Add a card to `notes.html`.
-3. Link the card to `notes/view.html?note=git-basic-flow`.
+1. Create a folder under `notes/`, for example `notes/my-new-note/`.
+2. Create `notes/my-new-note/index.md`.
+3. Add a card to `notes.html`.
+4. Link the card to `notes/view.html?note=my-new-note`.
 
-If you prefer a cleaner URL for a specific article, you can also copy a thin HTML wrapper such as `notes/boost-state-space.html`, update its `<title>` and `data-markdown-src`, then link to that wrapper instead.
+Images can live inside the same note folder and use simple relative paths:
+
+```markdown
+![Circuit diagram](circuit.png)
+```
+
+Inline and block LaTeX formulas are rendered with MathJax:
+
+```markdown
+Inline: $E = mc^2$
+
+Block:
+$$
+\dot{x} = Ax + Bu
+$$
+```
 
 When previewing locally, run a small web server from the repository root instead of opening the HTML file directly:
 
@@ -29,7 +45,7 @@ When previewing locally, run a small web server from the repository root instead
 python -m http.server 8000
 ```
 
-Then open `http://localhost:8000/notes/boost-state-space.html`.
+Then open `http://localhost:8000/notes/view.html?note=boost-state-space`.
 
 ## Suggested repository structure for research projects
 

@@ -12,7 +12,7 @@
     const slug = paramName ? new URLSearchParams(window.location.search).get(paramName) : "";
 
     if (slug && /^[a-z0-9-]+$/i.test(slug)) {
-      src = `${slug}.md`;
+      src = `${slug}/index.md`;
     }
   }
 
@@ -25,7 +25,71 @@
     note.innerHTML = `<p class="note-error">${message}</p>`;
   };
 
-  const renderMarkdown = (markdown) => {
+  const noteBasePath = src.includes("/") ? src.slice(0, src.lastIndexOf("/") + 1) : "";
+  const relativeUrlPattern = /^(?![a-z][a-z0-9+.-]*:|\/\/|\/|#)/i;
+
+  const protectMath = (markdown) => {
+    const math = [];
+    const pattern = /(\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)|(?<!\\)\$(?!\s)(?:\\.|[^\n$\\])+(?<!\s)(?<!\\)\$)/g;
+    const text = markdown.replace(pattern, (match) => {
+      const token = `@@MATH_${math.length}@@`;
+      math.push(match);
+      return token;
+    });
+
+    return { text, math };
+  };
+
+  const restoreMath = (html, math) => {
+    return math.reduce((result, value, index) => {
+      return result.split(`@@MATH_${index}@@`).join(value);
+    }, html);
+  };
+
+  const resolveLocalUrls = () => {
+    note.querySelectorAll("img[src]").forEach((image) => {
+      const srcValue = image.getAttribute("src");
+
+      if (srcValue && relativeUrlPattern.test(srcValue)) {
+        image.setAttribute("src", `${noteBasePath}${srcValue}`);
+      }
+    });
+
+    note.querySelectorAll("a[href]").forEach((link) => {
+      const hrefValue = link.getAttribute("href");
+
+      if (!hrefValue) {
+        return;
+      }
+
+      if (/^https?:\/\//i.test(hrefValue)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+      } else if (relativeUrlPattern.test(hrefValue)) {
+        link.setAttribute("href", `${noteBasePath}${hrefValue}`);
+      }
+    });
+  };
+
+  const typesetMath = async () => {
+    if (!window.MathJax) {
+      return;
+    }
+
+    if (window.MathJax.startup && window.MathJax.startup.promise) {
+      await window.MathJax.startup.promise;
+    }
+
+    if (window.MathJax.typesetPromise) {
+      if (window.MathJax.typesetClear) {
+        window.MathJax.typesetClear([note]);
+      }
+
+      await window.MathJax.typesetPromise([note]);
+    }
+  };
+
+  const renderMarkdown = async (markdown) => {
     if (!window.marked) {
       renderError("Markdown renderer failed to load.");
       return;
@@ -38,18 +102,18 @@
       mangle: false,
     });
 
-    const html = window.marked.parse(markdown);
-    note.innerHTML = window.DOMPurify ? window.DOMPurify.sanitize(html) : html;
-
-    note.querySelectorAll("a[href^='http']").forEach((link) => {
-      link.setAttribute("target", "_blank");
-      link.setAttribute("rel", "noopener noreferrer");
-    });
+    const protectedMarkdown = protectMath(markdown);
+    const html = window.marked.parse(protectedMarkdown.text);
+    const cleanHtml = window.DOMPurify ? window.DOMPurify.sanitize(html) : html;
+    note.innerHTML = restoreMath(cleanHtml, protectedMarkdown.math);
+    resolveLocalUrls();
 
     const title = note.querySelector("h1");
     if (title) {
       document.title = `${title.textContent} | Xuchu Ma`;
     }
+
+    await typesetMath();
   };
 
   fetch(src)
