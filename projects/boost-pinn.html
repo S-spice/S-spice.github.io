@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Physics-informed Modeling for DC-DC Boost Converter Dynamics | Xuchu Ma</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="../index.html">Xuchu Ma</a>
+      <div class="nav-links">
+        <a href="../projects.html">Projects</a>
+        <a href="../notes.html">Notes</a>
+        <a href="../cv.html">CV</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container page article">
+    <p class="tag">Work in progress · AI + Power Electronics</p>
+    <h1>Physics-informed Modeling for DC-DC Boost Converter Dynamics</h1>
+    <p class="lead small">
+      A self-directed project on converter dynamic prediction under load and input disturbances using Simulink data generation and physics-informed sequence modeling.
+    </p>
+
+    <section>
+      <h2>Motivation</h2>
+      <p>
+        Pure data-driven models can learn converter dynamics from simulated or experimental waveforms, but their generalization may degrade under parameter shifts or unseen disturbances.
+        This project explores whether lightweight physics-informed constraints can improve transient prediction for closed-loop DC-DC converters.
+      </p>
+    </section>
+
+    <section>
+      <h2>System</h2>
+      <p>
+        The initial system is a closed-loop Boost converter simulated in MATLAB/Simulink. The model includes input voltage variations, load steps, and parameter perturbations in inductance and capacitance.
+      </p>
+    </section>
+
+    <section>
+      <h2>Method</h2>
+      <ul>
+        <li>Build and validate a closed-loop Boost converter simulation.</li>
+        <li>Generate time-series datasets under load, input, and parameter disturbances.</li>
+        <li>Train baseline LSTM/TCN models for output-voltage and inductor-current prediction.</li>
+        <li>Add physics-informed loss terms based on averaged converter equations.</li>
+        <li>Compare in-distribution and out-of-distribution prediction performance.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Status</h2>
+      <p>Planning stage. The first milestone is a stable Simulink model with batch data export.</p>
+    </section>
+
+    <section>
+      <h2>Repository and report</h2>
+      <p>Links will be added after the first reproducible version is available.</p>
+      <ul>
+        <li>Code: <em>to be added</em></li>
+        <li>Dataset: <em>to be added</em></li>
+        <li>Technical report: <em>to be added</em></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

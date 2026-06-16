@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Xuchu Ma | Electrical Engineering & AI</title>
+  <meta name="description" content="Xuchu Ma - Electrical engineering researcher working on AI for power electronics and power-system time-series modeling." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="index.html">Xuchu Ma</a>
+      <div class="nav-links">
+        <a href="projects.html">Projects</a>
+        <a href="notes.html">Notes</a>
+        <a href="cv.html">CV</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">Electrical Engineering · AI · Power Electronics</p>
+      <h1>AI-assisted modeling and analysis for power electronics and power systems.</h1>
+      <p class="lead">
+        I am an electrical engineer with research experience in deep learning, time-series modeling,
+        transformer fault diagnosis, and dissolved-gas forecasting. I am currently building projects at
+        the intersection of artificial intelligence, power electronics, control, and digital twins.
+      </p>
+      <div class="cta-row">
+        <a class="button" href="projects.html">View projects</a>
+        <a class="button secondary" href="cv.html">View CV</a>
+      </div>
+    </section>
+
+    <section class="grid two-col">
+      <div class="card">
+        <h2>Research interests</h2>
+        <ul>
+          <li>Physics-informed modeling for power electronic converters</li>
+          <li>AI-assisted simulation, diagnostics, and digital twins</li>
+          <li>Power-system time-series forecasting and fault diagnosis</li>
+          <li>Control-oriented modeling for DC-DC converters and inverters</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Current focus</h2>
+        <p>
+          My current self-directed project studies physics-informed sequence modeling for a closed-loop
+          DC-DC Boost converter under load and input disturbances. The goal is to connect converter theory,
+          Simulink simulation, and AI-based dynamic prediction in a reproducible research workflow.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2>Selected projects</h2>
+        <a href="projects.html">All projects →</a>
+      </div>
+      <div class="project-list">
+        <article class="project-card">
+          <p class="tag">Work in progress</p>
+          <h3><a href="projects/boost-pinn.html">Physics-informed Modeling for DC-DC Boost Converter Dynamics</a></h3>
+          <p>Simulink-based dataset generation and hybrid neural modeling for converter transient prediction.</p>
+        </article>
+        <article class="project-card">
+          <p class="tag">Deep learning · Fault diagnosis</p>
+          <h3><a href="projects/transformer-ca-cnn.html">Transformer Fault Diagnosis with CA-CNN</a></h3>
+          <p>Convolutional attention model for transformer fault diagnosis using multi-source dissolved-gas features.</p>
+        </article>
+        <article class="project-card">
+          <p class="tag">Time-series forecasting</p>
+          <h3><a href="projects/dga-forecasting.html">Dissolved Gas Forecasting with CBAM-SIREN-LSTM</a></h3>
+          <p>Hybrid deep learning model for forecasting transformer dissolved-gas concentration sequences.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Xuchu Ma. Built as a research portfolio.</p>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
