@@ -25,7 +25,10 @@ a:hover { text-decoration: underline; }
   background: var(--bg);
   position: sticky;
   top: 0;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  isolation: isolate;
   backdrop-filter: blur(10px);
 }
 
@@ -47,6 +50,8 @@ a:hover { text-decoration: underline; }
   max-width: 1050px;
   margin: 0 auto;
   padding: 56px 22px;
+  position: relative;
+  z-index: 0;
 }
 
 .page { max-width: 900px; }
@@ -142,6 +147,10 @@ pre code {
   max-width: 100%;
   height: auto;
   border-radius: 12px;
+}
+.markdown-note mjx-container {
+  position: relative;
+  z-index: 0;
 }
 .markdown-note table {
   width: 100%;
